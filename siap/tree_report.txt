@@ -1,0 +1,358 @@
+TensorFlow 2.0 Upgrade Script
+-----------------------------
+Converted 24 files
+Detected 7 issues that require attention
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+File: OpenNE/src\openne\line.py
+--------------------------------------------------------------------------------
+OpenNE/src\openne\line.py:36:26: WARNING: tf.get_variable requires manual check. tf.get_variable returns ResourceVariables by default in 2.0, which have well-defined semantics and are stricter about shapes. You can disable this behavior by passing use_resource=False, or by calling tf.compat.v1.disable_resource_variables().
+OpenNE/src\openne\line.py:38:34: WARNING: tf.get_variable requires manual check. tf.get_variable returns ResourceVariables by default in 2.0, which have well-defined semantics and are stricter about shapes. You can disable this behavior by passing use_resource=False, or by calling tf.compat.v1.disable_resource_variables().
+OpenNE/src\openne\line.py:43:19: WARNING: tf.nn.embedding_lookup requires manual check. `partition_strategy` has been removed from tf.nn.embedding_lookup.  The 'div' strategy will be used by default.
+OpenNE/src\openne\line.py:44:19: WARNING: tf.nn.embedding_lookup requires manual check. `partition_strategy` has been removed from tf.nn.embedding_lookup.  The 'div' strategy will be used by default.
+OpenNE/src\openne\line.py:45:27: WARNING: tf.nn.embedding_lookup requires manual check. `partition_strategy` has been removed from tf.nn.embedding_lookup.  The 'div' strategy will be used by default.
+--------------------------------------------------------------------------------
+File: OpenNE/src\openne\gcn\models.py
+--------------------------------------------------------------------------------
+OpenNE/src\openne\gcn\models.py:74:20: WARNING: *.save requires manual check. (This warning is only applicable if the code saves a tf.Keras model) Keras model.save now saves to the Tensorflow SavedModel format by default, instead of HDF5. To continue saving to HDF5, add the argument save_format='h5' to the save() function.
+--------------------------------------------------------------------------------
+File: OpenNE/visualization_example\20newsgroup.py
+--------------------------------------------------------------------------------
+OpenNE/visualization_example\20newsgroup.py:73:0: WARNING: *.save requires manual check. (This warning is only applicable if the code saves a tf.Keras model) Keras model.save now saves to the Tensorflow SavedModel format by default, instead of HDF5. To continue saving to HDF5, add the argument save_format='h5' to the save() function.
+================================================================================
+Detailed log follows:
+
+================================================================================
+================================================================================
+Input tree: 'OpenNE/'
+================================================================================
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\setup.py'
+ outputting to 'OpenNE_v2/src\\setup.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\classify.py'
+ outputting to 'OpenNE_v2/src\\openne\\classify.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\gf.py'
+ outputting to 'OpenNE_v2/src\\openne\\gf.py'
+--------------------------------------------------------------------------------
+
+20:20: INFO: Renamed 'tf.Session' to 'tf.compat.v1.Session'
+45:34: INFO: Changing tf.contrib.layers xavier initializer to a tf.compat.v1.keras.initializers.VarianceScaling and converting arguments.
+
+48:14: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+49:18: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+51:15: INFO: Added keywords to args of function 'tf.reduce_sum'
+52:55: INFO: Added keywords to args of function 'tf.transpose'
+53:27: INFO: Added keywords to args of function 'tf.reduce_sum'
+55:20: INFO: Renamed 'tf.train.AdamOptimizer' to 'tf.compat.v1.train.AdamOptimizer'
+58:15: INFO: Renamed 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\graph.py'
+ outputting to 'OpenNE_v2/src\\openne\\graph.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\grarep.py'
+ outputting to 'OpenNE_v2/src\\openne\\grarep.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\hope.py'
+ outputting to 'OpenNE_v2/src\\openne\\hope.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\lap.py'
+ outputting to 'OpenNE_v2/src\\openne\\lap.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\line.py'
+ outputting to 'OpenNE_v2/src\\openne\\line.py'
+--------------------------------------------------------------------------------
+
+24:22: INFO: Changing tf.contrib.layers xavier initializer to a tf.compat.v1.keras.initializers.VarianceScaling and converting arguments.
+
+26:13: INFO: Renamed 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+28:22: INFO: Renamed 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+31:17: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+32:17: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+33:20: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+36:26: WARNING: tf.get_variable requires manual check. tf.get_variable returns ResourceVariables by default in 2.0, which have well-defined semantics and are stricter about shapes. You can disable this behavior by passing use_resource=False, or by calling tf.compat.v1.disable_resource_variables().
+36:26: INFO: Renamed 'tf.get_variable' to 'tf.compat.v1.get_variable'
+37:86: INFO: Changing tf.contrib.layers xavier initializer to a tf.compat.v1.keras.initializers.VarianceScaling and converting arguments.
+
+38:34: WARNING: tf.get_variable requires manual check. tf.get_variable returns ResourceVariables by default in 2.0, which have well-defined semantics and are stricter about shapes. You can disable this behavior by passing use_resource=False, or by calling tf.compat.v1.disable_resource_variables().
+38:34: INFO: Renamed 'tf.get_variable' to 'tf.compat.v1.get_variable'
+39:94: INFO: Changing tf.contrib.layers xavier initializer to a tf.compat.v1.keras.initializers.VarianceScaling and converting arguments.
+
+43:19: INFO: Added keywords to args of function 'tf.nn.embedding_lookup'
+43:19: WARNING: tf.nn.embedding_lookup requires manual check. `partition_strategy` has been removed from tf.nn.embedding_lookup.  The 'div' strategy will be used by default.
+44:19: INFO: Added keywords to args of function 'tf.nn.embedding_lookup'
+44:19: WARNING: tf.nn.embedding_lookup requires manual check. `partition_strategy` has been removed from tf.nn.embedding_lookup.  The 'div' strategy will be used by default.
+45:27: INFO: Added keywords to args of function 'tf.nn.embedding_lookup'
+45:27: WARNING: tf.nn.embedding_lookup requires manual check. `partition_strategy` has been removed from tf.nn.embedding_lookup.  The 'div' strategy will be used by default.
+47:28: INFO: Added keywords to args of function 'tf.reduce_mean'
+47:43: INFO: Renamed 'tf.log_sigmoid' to 'tf.math.log_sigmoid'
+48:22: INFO: Added keywords to args of function 'tf.reduce_sum'
+49:27: INFO: Added keywords to args of function 'tf.reduce_mean'
+49:42: INFO: Renamed 'tf.log_sigmoid' to 'tf.math.log_sigmoid'
+50:22: INFO: Added keywords to args of function 'tf.reduce_sum'
+55:20: INFO: Renamed 'tf.train.AdamOptimizer' to 'tf.compat.v1.train.AdamOptimizer'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\lle.py'
+ outputting to 'OpenNE_v2/src\\openne\\lle.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\node2vec.py'
+ outputting to 'OpenNE_v2/src\\openne\\node2vec.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\sdne.py'
+ outputting to 'OpenNE_v2/src\\openne\\sdne.py'
+--------------------------------------------------------------------------------
+
+11:9: INFO: `name` passed to `name_scope`. Because you may be re-entering an existing scope, it is not safe to convert automatically,  the v2 name_scope does not support re-entering scopes by name.
+
+11:9: INFO: Renamed 'tf.name_scope' to 'tf.compat.v1.name_scope'
+12:29: INFO: Changing tf.contrib.layers xavier initializer to a tf.compat.v1.keras.initializers.VarianceScaling and converting arguments.
+
+52:22: INFO: tf.train.inverse_time_decay requires manual check. To use learning rate decay schedules with TensorFlow 2.0, switch to the schedules in `tf.keras.optimizers.schedules`.
+
+52:22: INFO: Renamed 'tf.train.inverse_time_decay' to 'tf.compat.v1.train.inverse_time_decay'
+54:20: INFO: Renamed 'tf.Session' to 'tf.compat.v1.Session'
+76:19: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+77:14: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+78:12: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+84:13: INFO: `name` passed to `name_scope`. Because you may be re-entering an existing scope, it is not safe to convert automatically,  the v2 name_scope does not support re-entering scopes by name.
+
+84:13: INFO: Renamed 'tf.name_scope' to 'tf.compat.v1.name_scope'
+94:13: INFO: `name` passed to `name_scope`. Because you may be re-entering an existing scope, it is not safe to convert automatically,  the v2 name_scope does not support re-entering scopes by name.
+
+94:13: INFO: Renamed 'tf.name_scope' to 'tf.compat.v1.name_scope'
+105:27: INFO: Added keywords to args of function 'tf.reduce_sum'
+107:16: INFO: Added keywords to args of function 'tf.reduce_sum'
+110:37: INFO: Added keywords to args of function 'tf.transpose'
+111:24: INFO: Added keywords to args of function 'tf.transpose'
+115:16: INFO: Added keywords to args of function 'tf.reduce_sum'
+120:28: INFO: Added keywords to args of function 'tf.reduce_sum'
+120:73: INFO: Added keywords to args of function 'tf.reduce_sum'
+122:20: INFO: Renamed 'tf.train.AdamOptimizer' to 'tf.compat.v1.train.AdamOptimizer'
+126:15: INFO: Renamed 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+178:22: INFO: tf.train.inverse_time_decay requires manual check. To use learning rate decay schedules with TensorFlow 2.0, switch to the schedules in `tf.keras.optimizers.schedules`.
+
+178:22: INFO: Renamed 'tf.train.inverse_time_decay' to 'tf.compat.v1.train.inverse_time_decay'
+180:20: INFO: Renamed 'tf.Session' to 'tf.compat.v1.Session'
+202:13: INFO: `name` passed to `name_scope`. Because you may be re-entering an existing scope, it is not safe to convert automatically,  the v2 name_scope does not support re-entering scopes by name.
+
+202:13: INFO: Renamed 'tf.name_scope' to 'tf.compat.v1.name_scope'
+211:13: INFO: `name` passed to `name_scope`. Because you may be re-entering an existing scope, it is not safe to convert automatically,  the v2 name_scope does not support re-entering scopes by name.
+
+211:13: INFO: Renamed 'tf.name_scope' to 'tf.compat.v1.name_scope'
+253:16: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+254:17: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+255:16: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+256:17: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+257:18: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+265:16: INFO: Added keywords to args of function 'tf.reduce_sum'
+265:41: INFO: Added keywords to args of function 'tf.reduce_sum'
+267:16: INFO: Added keywords to args of function 'tf.reduce_sum'
+272:28: INFO: Added keywords to args of function 'tf.reduce_sum'
+272:73: INFO: Added keywords to args of function 'tf.reduce_sum'
+277:20: INFO: Renamed 'tf.train.AdamOptimizer' to 'tf.compat.v1.train.AdamOptimizer'
+280:15: INFO: Renamed 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\tadw.py'
+ outputting to 'OpenNE_v2/src\\openne\\tadw.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\walker.py'
+ outputting to 'OpenNE_v2/src\\openne\\walker.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\__init__.py'
+ outputting to 'OpenNE_v2/src\\openne\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\__main__.py'
+ outputting to 'OpenNE_v2/src\\openne\\__main__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\gcn\\gcnAPI.py'
+ outputting to 'OpenNE_v2/src\\openne\\gcn\\gcnAPI.py'
+--------------------------------------------------------------------------------
+
+39:20: INFO: Renamed 'tf.Session' to 'tf.compat.v1.Session'
+41:22: INFO: Renamed 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+89:24: INFO: Renamed 'tf.sparse_placeholder' to 'tf.compat.v1.sparse_placeholder'
+90:24: INFO: Renamed 'tf.sparse_placeholder' to 'tf.compat.v1.sparse_placeholder'
+91:22: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+92:27: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+93:23: INFO: Renamed 'tf.placeholder_with_default' to 'tf.compat.v1.placeholder_with_default'
+95:36: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\gcn\\inits.py'
+ outputting to 'OpenNE_v2/src\\openne\\gcn\\inits.py'
+--------------------------------------------------------------------------------
+
+7:14: INFO: Renamed 'tf.random_uniform' to 'tf.random.uniform'
+15:14: INFO: Renamed 'tf.random_uniform' to 'tf.random.uniform'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\gcn\\layers.py'
+ outputting to 'OpenNE_v2/src\\openne\\gcn\\layers.py'
+--------------------------------------------------------------------------------
+
+4:8: INFO: Renamed 'tf.app.flags' to 'tf.compat.v1.app.flags'
+24:21: INFO: Renamed 'tf.random_uniform' to 'tf.random.uniform'
+26:14: INFO: Renamed 'tf.sparse_retain' to 'tf.sparse.retain'
+33:14: INFO: Renamed 'tf.sparse_tensor_dense_matmul' to 'tf.sparse.sparse_dense_matmul'
+72:13: INFO: `name` passed to `name_scope`. Because you may be re-entering an existing scope, it is not safe to convert automatically,  the v2 name_scope does not support re-entering scopes by name.
+
+72:13: INFO: Renamed 'tf.name_scope' to 'tf.compat.v1.name_scope'
+74:16: INFO: tf.summary.histogram requires manual check. The TF 1.x summary API cannot be automatically migrated to TF 2.0, so symbols have been converted to tf.compat.v1.summary.* and must be migrated manually. Typical usage will only require changes to the summary writing logic, not to individual calls like scalar(). For examples of the new summary API, see the Effective TF 2.0 migration document or check the TF 2.0 TensorBoard tutorials.
+74:16: INFO: Renamed 'tf.summary.histogram' to 'tf.compat.v1.summary.histogram'
+77:16: INFO: tf.summary.histogram requires manual check. The TF 1.x summary API cannot be automatically migrated to TF 2.0, so symbols have been converted to tf.compat.v1.summary.* and must be migrated manually. Typical usage will only require changes to the summary writing logic, not to individual calls like scalar(). For examples of the new summary API, see the Effective TF 2.0 migration document or check the TF 2.0 TensorBoard tutorials.
+77:16: INFO: Renamed 'tf.summary.histogram' to 'tf.compat.v1.summary.histogram'
+82:12: INFO: tf.summary.histogram requires manual check. The TF 1.x summary API cannot be automatically migrated to TF 2.0, so symbols have been converted to tf.compat.v1.summary.* and must be migrated manually. Typical usage will only require changes to the summary writing logic, not to individual calls like scalar(). For examples of the new summary API, see the Effective TF 2.0 migration document or check the TF 2.0 TensorBoard tutorials.
+82:12: INFO: Renamed 'tf.summary.histogram' to 'tf.compat.v1.summary.histogram'
+105:13: INFO: Renamed 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+121:16: INFO: Changing keep_prob arg of tf.nn.dropout to rate, and recomputing value.
+
+155:13: INFO: Renamed 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+172:16: INFO: Changing keep_prob arg of tf.nn.dropout to rate, and recomputing value.
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\gcn\\metrics.py'
+ outputting to 'OpenNE_v2/src\\openne\\gcn\\metrics.py'
+--------------------------------------------------------------------------------
+
+6:11: INFO: Changing labels arg of tf.nn.softmax_cross_entropy_with_logits to tf.stop_gradient(labels). Please check this transformation.
+
+8:12: INFO: Added keywords to args of function 'tf.reduce_mean'
+10:11: INFO: Added keywords to args of function 'tf.reduce_mean'
+15:34: INFO: Added keywords to args of function 'tf.argmax'
+15:55: INFO: Added keywords to args of function 'tf.argmax'
+18:12: INFO: Added keywords to args of function 'tf.reduce_mean'
+20:11: INFO: Added keywords to args of function 'tf.reduce_mean'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\gcn\\models.py'
+ outputting to 'OpenNE_v2/src\\openne\\gcn\\models.py'
+--------------------------------------------------------------------------------
+
+4:8: INFO: Renamed 'tf.app.flags' to 'tf.compat.v1.app.flags'
+40:13: INFO: Renamed 'tf.variable_scope' to 'tf.compat.v1.variable_scope'
+51:20: INFO: Renamed 'tf.get_collection' to 'tf.compat.v1.get_collection'
+52:12: INFO: Renamed 'tf.GraphKeys' to 'tf.compat.v1.GraphKeys'
+73:16: INFO: Renamed 'tf.train.Saver' to 'tf.compat.v1.train.Saver'
+74:20: WARNING: *.save requires manual check. (This warning is only applicable if the code saves a tf.Keras model) Keras model.save now saves to the Tensorflow SavedModel format by default, instead of HDF5. To continue saving to HDF5, add the argument save_format='h5' to the save() function.
+80:16: INFO: Renamed 'tf.train.Saver' to 'tf.compat.v1.train.Saver'
+96:25: INFO: Renamed 'tf.train.AdamOptimizer' to 'tf.compat.v1.train.AdamOptimizer'
+146:25: INFO: Renamed 'tf.train.AdamOptimizer' to 'tf.compat.v1.train.AdamOptimizer'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\gcn\\train.py'
+ outputting to 'OpenNE_v2/src\\openne\\gcn\\train.py'
+--------------------------------------------------------------------------------
+
+13:0: INFO: Renamed 'tf.set_random_seed' to 'tf.compat.v1.set_random_seed'
+16:8: INFO: Renamed 'tf.app.flags' to 'tf.compat.v1.app.flags'
+55:16: INFO: Renamed 'tf.sparse_placeholder' to 'tf.compat.v1.sparse_placeholder'
+56:16: INFO: Renamed 'tf.sparse_placeholder' to 'tf.compat.v1.sparse_placeholder'
+57:14: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+58:19: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+59:15: INFO: Renamed 'tf.placeholder_with_default' to 'tf.compat.v1.placeholder_with_default'
+61:28: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+68:7: INFO: Renamed 'tf.Session' to 'tf.compat.v1.Session'
+81:9: INFO: Renamed 'tf.global_variables_initializer' to 'tf.compat.v1.global_variables_initializer'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\gcn\\utils.py'
+ outputting to 'OpenNE_v2/src\\openne\\gcn\\utils.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/src\\openne\\gcn\\__init__.py'
+ outputting to 'OpenNE_v2/src\\openne\\gcn\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'OpenNE/visualization_example\\20newsgroup.py'
+ outputting to 'OpenNE_v2/visualization_example\\20newsgroup.py'
+--------------------------------------------------------------------------------
+
+69:7: INFO: Renamed 'tf.Session' to 'tf.compat.v1.Session'
+71:8: INFO: Renamed 'tf.train.Saver' to 'tf.compat.v1.train.Saver'
+73:0: WARNING: *.save requires manual check. (This warning is only applicable if the code saves a tf.Keras model) Keras model.save now saves to the Tensorflow SavedModel format by default, instead of HDF5. To continue saving to HDF5, add the argument save_format='h5' to the save() function.
+81:31: INFO: tf.summary.FileWriter requires manual check. The TF 1.x summary API cannot be automatically migrated to TF 2.0, so symbols have been converted to tf.compat.v1.summary.* and must be migrated manually. Typical usage will only require changes to the summary writing logic, not to individual calls like scalar(). For examples of the new summary API, see the Effective TF 2.0 migration document or check the TF 2.0 TensorBoard tutorials.
+81:31: INFO: Renamed 'tf.summary.FileWriter' to 'tf.compat.v1.summary.FileWriter'
+--------------------------------------------------------------------------------
+
