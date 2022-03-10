@@ -13,9 +13,9 @@ import sklearn.metrics as metrics
 tf.compat.v1.disable_eager_execution()
 tf.compat.v1.disable_resource_variables()
 
-test = pd.read_csv('data/out.csv', sep=',', index_col=False, dtype='unicode')
+test = pd.read_csv('data/out3.csv', sep=',', index_col=False, dtype='unicode')
 df = test.iloc[: , 1:]
-df = df.drop(['tconst', 'nconst'], axis=1)
+#df = df.drop(['tconst', 'nconst'], axis=1)
 #df['genres'].str.split(',', expand=True)
 #df['startYear'] = df['startYear'].astype(np.int16)
 #df['isAdult'] = df['isAdult'].astype(bool)
@@ -133,7 +133,7 @@ predictions = predictions.toarray()
 print(type(testY))
 print(type(predictions))
 accuracy = metrics.accuracy_score(testY, predictions)
-print(accuracy)  # 0.148
+print(accuracy)
 # print(predictions)
 # print(testY)
 #print(testY.shape)
