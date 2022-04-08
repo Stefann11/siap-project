@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+siap/.idea/siap.iml
+siap/data/name.basics.tsv.gz.tsv
+siap/data/out.csv
+siap/data/out2.csv
+siap/data/out3.csv
+siap/data/title.basics.tsv.gz.tsv
+siap/data/title.principals.tsv.gz.tsv
+siap/OpenNE/
+siap/.idea/siap.iml
