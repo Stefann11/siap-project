@@ -45,31 +45,31 @@ y = genres
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=12)
 
-# classifier = MLkNN(k=3)
+classifier = MLkNN(k=3)
+
+# train
+classifier.fit(X_train, y_train)
+predictions = classifier.predict(X_test)
+
+# graph_builder = LabelCooccurrenceGraphBuilder(weighted=True, include_self_edges=False)
+# openne_line_params = dict(batch_size=1000, order=3)
+# embedder = OpenNetworkEmbedder(
+#     graph_builder,
+#     'LINE',
+#     dimension = 5*y_train.shape[1],
+#     aggregation_function = 'add',
+#     normalize_weights=True,
+#     param_dict = openne_line_params
+# )
 #
-# # train
-# classifier.fit(X_train, y_train)
-# predictions = classifier.predict(X_test)
+# clf = EmbeddingClassifier(
+#     embedder,
+#     RandomForestRegressor(n_estimators=10),
+#     MLkNN(k=5)
+# )
 
-graph_builder = LabelCooccurrenceGraphBuilder(weighted=True, include_self_edges=False)
-openne_line_params = dict(batch_size=1000, order=3)
-embedder = OpenNetworkEmbedder(
-    graph_builder,
-    'LINE',
-    dimension = 5*y_train.shape[1],
-    aggregation_function = 'add',
-    normalize_weights=True,
-    param_dict = openne_line_params
-)
-
-clf = EmbeddingClassifier(
-    embedder,
-    RandomForestRegressor(n_estimators=10),
-    MLkNN(k=5)
-)
-
-clf.fit(X_train, y_train)
-
-predictions = clf.predict(X_test)
+# clf.fit(X_train, y_train)
+#
+# predictions = clf.predict(X_test)
 accuracy = metrics.accuracy_score(y_test, predictions)
 print(accuracy)

@@ -3,6 +3,7 @@ from skmultilearn.embedding import EmbeddingClassifier
 from sklearn.ensemble import RandomForestRegressor
 from skmultilearn.adapt import MLkNN
 from skmultilearn.problem_transform import BinaryRelevance
+from sklearn.svm import LinearSVR
 from sklearn.svm import SVC
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -15,7 +16,7 @@ import tensorflow as tf
 tf.compat.v1.disable_eager_execution()
 tf.compat.v1.disable_resource_variables()
 
-train_csv = pd.read_csv('data/small_out2.csv', sep=',', index_col=False, dtype='unicode')
+train_csv = pd.read_csv('data/out3.csv', sep=',', index_col=False, dtype='unicode')
 df = train_csv.iloc[: , 1:]
 mlb = MultiLabelBinarizer()
 genres = df['genres']
@@ -42,28 +43,17 @@ X = df
 y = genres
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=12)
+sparse_df = X_train.astype(pd.SparseDtype("float64",0))
+csr_sparse_matrix = sparse_df.sparse.to_coo().tocsr()
+sparse_df2 = X_test.astype(pd.SparseDtype("float64",0))
+csr_sparse_matrix2 = sparse_df2.sparse.to_coo().tocsr()
 
-classifier = MLkNN(k=3)
-
-# graph_builder = LabelCooccurrenceGraphBuilder(weighted=True, include_self_edges=False)
-# openne_line_params = dict(batch_size=1000, order=3)
-# embedder = OpenNetworkEmbedder(
-#     graph_builder,
-#     'LINE',
-#     dimension = 5*y_train.shape[1],
-#     aggregation_function = 'add',
-#     normalize_weights=True,
-#     param_dict = openne_line_params
-# )
-#
-# classifier = EmbeddingClassifier(
-#     embedder,
-#     RandomForestRegressor(n_estimators=10),
-#     MLkNN(k=5)
-# )
-#
-classifier.fit(X_train, y_train)
-predictions = classifier.predict(X_test)
+classifier = BinaryRelevance(
+    classifier = SVC(),
+    require_dense = [False, True]
+)
+classifier.fit(csr_sparse_matrix, y_train)
+predictions = classifier.predict(csr_sparse_matrix2)
 accuracy = metrics.accuracy_score(y_test, predictions)
 print(f"Accuracy: {accuracy}")
 

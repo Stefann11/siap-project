@@ -20,7 +20,8 @@ import tensorflow as tf
 from scipy import sparse
 from sklearn.preprocessing import normalize
 import sklearn.metrics as metrics
-from skmultilearn.adapt import MLkNN
+from skmultilearn.problem_transform import BinaryRelevance
+from sklearn.svm import SVC
 from sklearn.preprocessing import MultiLabelBinarizer
 from skmultilearn.embedding import OpenNetworkEmbedder
 from skmultilearn.cluster import LabelCooccurrenceGraphBuilder
@@ -148,32 +149,19 @@ y = genres
 X = df.drop(['genres', 'primaryTitle_clean', 'startYear_clean', 'category_clean', 'primaryName_clean'], axis=1)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=12)
-# sparse_df = X_train.astype(pd.SparseDtype("float64",0))
-# csr_sparse_matrix = sparse_df.sparse.to_coo().tocsr()
-# sparse_df2 = X_test.astype(pd.SparseDtype("float64",0))
-# csr_sparse_matrix2 = sparse_df2.sparse.to_coo().tocsr()
-# classifier = MLkNN(k=3)
-
-graph_builder = LabelCooccurrenceGraphBuilder(weighted=True, include_self_edges=False)
-openne_line_params = dict(batch_size=1000, order=3)
-embedder = OpenNetworkEmbedder(
-    graph_builder,
-    'LINE',
-    dimension = 5*y_train.shape[1],
-    aggregation_function = 'add',
-    normalize_weights=True,
-    param_dict = openne_line_params
+sparse_df = X_train.astype(pd.SparseDtype("float64",0))
+csr_sparse_matrix = sparse_df.sparse.to_coo().tocsr()
+sparse_df2 = X_test.astype(pd.SparseDtype("float64",0))
+csr_sparse_matrix2 = sparse_df2.sparse.to_coo().tocsr()
+classifier = BinaryRelevance(
+    classifier = SVC(),
+    require_dense = [False, True]
 )
 
-classifier = EmbeddingClassifier(
-    embedder,
-    RandomForestRegressor(n_estimators=10),
-    MLkNN(k=5)
-)
 
-classifier.fit(X_train, y_train)
+classifier.fit(csr_sparse_matrix, y_train)
 
-predictions = classifier.predict(X_test)
+predictions = classifier.predict(csr_sparse_matrix2)
 accuracy = metrics.accuracy_score(y_test, predictions)
 print(accuracy)
 

@@ -136,3 +136,5 @@ siap/data/title.basics.tsv.gz.tsv
 siap/data/title.principals.tsv.gz.tsv
 siap/OpenNE/
 siap/.idea/siap.iml
+siap/data/small_out2.csv
+siap/data/small_out.csv

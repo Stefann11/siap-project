@@ -2,20 +2,17 @@ from sklearn.preprocessing import MultiLabelBinarizer
 from skmultilearn.embedding import EmbeddingClassifier
 from sklearn.ensemble import RandomForestRegressor
 from skmultilearn.adapt import MLkNN
-from skmultilearn.problem_transform import BinaryRelevance
-from sklearn.svm import SVC
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 from skmultilearn.embedding import OpenNetworkEmbedder
 from skmultilearn.cluster import LabelCooccurrenceGraphBuilder
 import sklearn.metrics as metrics
-from sklearn.metrics import precision_score
 import tensorflow as tf
 tf.compat.v1.disable_eager_execution()
 tf.compat.v1.disable_resource_variables()
 
-train_csv = pd.read_csv('data/small_out2.csv', sep=',', index_col=False, dtype='unicode')
+train_csv = pd.read_csv('data/out3.csv', sep=',', index_col=False, dtype='unicode')
 df = train_csv.iloc[: , 1:]
 mlb = MultiLabelBinarizer()
 genres = df['genres']
@@ -43,31 +40,31 @@ y = genres
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=12)
 
-classifier = MLkNN(k=3)
+# classifier = MLkNN(k=3)
+#
+# # train
+# classifier.fit(X_train, y_train)
+# predictions = classifier.predict(X_test)
 
-# graph_builder = LabelCooccurrenceGraphBuilder(weighted=True, include_self_edges=False)
-# openne_line_params = dict(batch_size=1000, order=3)
-# embedder = OpenNetworkEmbedder(
-#     graph_builder,
-#     'LINE',
-#     dimension = 5*y_train.shape[1],
-#     aggregation_function = 'add',
-#     normalize_weights=True,
-#     param_dict = openne_line_params
-# )
-#
-# classifier = EmbeddingClassifier(
-#     embedder,
-#     RandomForestRegressor(n_estimators=10),
-#     MLkNN(k=5)
-# )
-#
-classifier.fit(X_train, y_train)
-predictions = classifier.predict(X_test)
+graph_builder = LabelCooccurrenceGraphBuilder(weighted=True, include_self_edges=False)
+openne_line_params = dict(batch_size=1000, order=3)
+embedder = OpenNetworkEmbedder(
+    graph_builder,
+    'LINE',
+    dimension = 5*y_train.shape[1],
+    aggregation_function = 'add',
+    normalize_weights=True,
+    param_dict = openne_line_params
+)
+
+clf = EmbeddingClassifier(
+    embedder,
+    RandomForestRegressor(n_estimators=10),
+    MLkNN(k=5)
+)
+
+clf.fit(X_train, y_train)
+
+predictions = clf.predict(X_test)
 accuracy = metrics.accuracy_score(y_test, predictions)
-print(f"Accuracy: {accuracy}")
-
-precisionScore_sklearn_microavg = precision_score(y_test, predictions, average='micro')
-precisionScore_sklearn_macroavg = precision_score(y_test, predictions, average='macro')
-print("Micro average:", precisionScore_sklearn_microavg)
-print("Macro average:", precisionScore_sklearn_macroavg)
+print(accuracy)
